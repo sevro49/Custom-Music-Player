@@ -53,6 +53,7 @@ playPauseBtn.addEventListener("click", () => {
     isMusicPaused ? pauseMusic() : playMusic();
 });
 
+//  next music btn event
 nextBtn.addEventListener("click", () => {
     nextMusic(); // calling next music function
 });
