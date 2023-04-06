@@ -3,9 +3,11 @@ const wrapper = document.querySelector(".wrapper"),
     musicName = wrapper.querySelector(".song-details .name"),
     musicArtist = wrapper.querySelector(".song-details .artist"),
     mainAudio = wrapper.querySelector("#main-audio"),
-    playPauseBtn = wrapper.querySelector(".play-pause");
+    playPauseBtn = wrapper.querySelector(".play-pause"),
+    prevBtn = wrapper.querySelector("#prev"),
+    nextBtn = wrapper.querySelector("#next");
 
-let musicIndex = 5;
+let musicIndex = 3;
 
 window.addEventListener("load", () => {
     loadMusic(musicIndex); // calling load music function once window loaded
@@ -20,17 +22,27 @@ function loadMusic(indexNumb) {
 }
 
 //play music function
-function playMusic(){
+function playMusic() {
     wrapper.classList.add("paused");
     playPauseBtn.querySelector("i").innerText = "pause";
     mainAudio.play();
 }
 
 //pause music function
-function pauseMusic(){
+function pauseMusic() {
     wrapper.classList.remove("paused");
     playPauseBtn.querySelector("i").innerText = "play_arrow";
     mainAudio.pause();
+}
+
+//next music function
+function nextMusic() {
+    // here we'll just increment of index by 1
+    musicIndex++;
+    // If musicIndex greater than array length, then musicIndex will be 1 and first song will play
+    musicIndex > allMusic.length ? (musicIndex = 1) : (musicIndex = musicIndex);
+    loadMusic(musicIndex);
+    playMusic();
 }
 
 // play or pause music button event
@@ -39,4 +51,8 @@ playPauseBtn.addEventListener("click", () => {
 
     // If isMusicPaused is true then call pauseMusic, else call playMusic
     isMusicPaused ? pauseMusic() : playMusic();
+});
+
+nextBtn.addEventListener("click", () => {
+    nextMusic(); // calling next music function
 });
