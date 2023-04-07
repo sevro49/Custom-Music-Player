@@ -5,7 +5,9 @@ const wrapper = document.querySelector(".wrapper"),
     mainAudio = wrapper.querySelector("#main-audio"),
     playPauseBtn = wrapper.querySelector(".play-pause"),
     prevBtn = wrapper.querySelector("#prev"),
-    nextBtn = wrapper.querySelector("#next");
+    nextBtn = wrapper.querySelector("#next"),
+    progressBar = wrapper.querySelector(".progress-bar");
+
 
 let musicIndex = 3;
 
@@ -55,7 +57,7 @@ function prevMusic() {
     playMusic();
 }
 
-// play or pause music button event 
+// play or pause music button event
 playPauseBtn.addEventListener("click", () => {
     const isMusicPaused = wrapper.classList.contains("paused");
 
@@ -72,3 +74,10 @@ prevBtn.addEventListener("click", () => {
     prevMusic(); // calling prev music function
 });
 
+//update progress bar width according to music current time
+mainAudio.addEventListener("timeupdate", (e) => {
+    const currentTime = e.target.currentTime; // getting current time of song
+    const duration = e.target.duration; // getting total duration of song
+    let progressWidth  = (currentTime / duration) * 100;
+    progressBar.style.width = `${progressWidth}%`
+})
