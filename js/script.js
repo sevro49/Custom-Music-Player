@@ -55,7 +55,7 @@ function prevMusic() {
     playMusic();
 }
 
-// play or pause music button event
+// play or pause music button event 
 playPauseBtn.addEventListener("click", () => {
     const isMusicPaused = wrapper.classList.contains("paused");
 
