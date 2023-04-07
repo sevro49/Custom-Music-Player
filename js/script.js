@@ -50,7 +50,7 @@ function prevMusic() {
     // here we'll just decrement of index by 1
     musicIndex--;
     // If musicIndex less than 1, then musicIndex will be array length and last song will play
-    musicIndex < allMusic.length ? (musicIndex = allMusic.length) : (musicIndex = musicIndex);
+    musicIndex < 1 ? (musicIndex = allMusic.length) : (musicIndex = musicIndex);
     loadMusic(musicIndex);
     playMusic();
 }
