@@ -7,7 +7,7 @@ const wrapper = document.querySelector(".wrapper"),
     prevBtn = wrapper.querySelector("#prev"),
     nextBtn = wrapper.querySelector("#next"),
     progressBar = wrapper.querySelector(".progress-bar"),
-    progressArea = wrapper.querySelector(".progress-area"); 
+    progressArea = wrapper.querySelector(".progress-area");
 
 let musicIndex = 3;
 
@@ -107,11 +107,35 @@ mainAudio.addEventListener("timeupdate", (e) => {
 });
 
 // Update playing song current time according to the progress bar width
-progressArea.addEventListener("click", (e) =>{
+progressArea.addEventListener("click", (e) => {
     let progressWidthval = progressArea.clientWidth; // getting width of progress bar
     let clickedOffSetX = e.offsetX; // getting offset x value
     let songDuration = mainAudio.duration; // getting song total duration
 
     mainAudio.currentTime = (clickedOffSetX / progressWidthval) * songDuration;
     playMusic(); // If music is paused, when you click progress bar then music will play
-})
+});
+
+// repeat, shuffle buttons
+
+const repeatBtn = wrapper.querySelector("#repeat-plist");
+repeatBtn.addEventListener("click", () => {
+    // first we get the innerText of the icon, then we'll change accordingly
+    let getText = repeatBtn.innerText; // getting innerText of icon
+
+    // different changes on different icon click using switch
+    switch (getText) {
+        case "repeat": //if this icon is repeat then change it to repeat_one
+            repeatBtn.innerText = "repeat_one";
+            repeatBtn.setAttribute("title", "Song looped");
+            break;
+        case "repeat_one": //if this icon is repeat_one then change it to shuffle
+            repeatBtn.innerText = "shuffle";
+            repeatBtn.setAttribute("title", "Playback shuffle");
+            break;
+        case "shuffle": //if this icon is shuffle then change it to repeat
+            repeatBtn.innerText = "repeat";
+            repeatBtn.setAttribute("title", "Playlist looped");
+            break;
+    }
+});
