@@ -113,4 +113,5 @@ progressArea.addEventListener("click", (e) =>{
     let songDuration = mainAudio.duration; // getting song total duration
 
     mainAudio.currentTime = (clickedOffSetX / progressWidthval) * songDuration;
+    playMusic(); // If music is paused, when you click progress bar then music will play
 })
