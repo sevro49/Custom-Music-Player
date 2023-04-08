@@ -42,7 +42,7 @@ body {
 }
 
 .top-bar,
-.progess-area .timer,
+.progress-area .timer,
 .controls,
 .music-list .header,
 .music-list li {
@@ -91,7 +91,7 @@ body {
     font-size: 18px;
 }
 
-.progess-area {
+.progress-area {
     height: 6px;
     width: 100%;
     background-color: #f0f0f0;
@@ -99,7 +99,7 @@ body {
     cursor: pointer;
 }
 
-.progess-area .progress-bar {
+.progress-area .progress-bar {
     height: inherit;
     width: 50%;
     position: relative;
@@ -122,11 +122,11 @@ body {
     transition: opacity 0.2s ease;
 }
 
-.progess-area:hover .progress-bar::before {
+.progress-area:hover .progress-bar::before {
     opacity: 1;
 }
 
-.progess-area .timer {
+.progress-area .timer {
     margin-top: 2px;
 }
 
