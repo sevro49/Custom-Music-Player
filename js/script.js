@@ -7,7 +7,10 @@ const wrapper = document.querySelector(".wrapper"),
     prevBtn = wrapper.querySelector("#prev"),
     nextBtn = wrapper.querySelector("#next"),
     progressBar = wrapper.querySelector(".progress-bar"),
-    progressArea = wrapper.querySelector(".progress-area");
+    progressArea = wrapper.querySelector(".progress-area"),
+    musicList = wrapper.querySelector(".music-list"),
+    showMoreBtn = wrapper.querySelector("#more-music"),
+    hideMusicBtn = musicList.querySelector("#close");
 
 let musicIndex = 3;
 
@@ -161,13 +164,21 @@ mainAudio.addEventListener("ended", () => {
             break;
         case "shuffle": //if this icon is shuffle then change it to repeat
             // generating random index between the max range of array length
-            let randIndex = Math.floor((Math.random() * allMusic.length) + 1);
-            do{
-                randIndex = Math.floor((Math.random() * allMusic.length) + 1);
-            } while(musicIndex == randIndex); // this loop run until the next random number won't be the same of current music index
+            let randIndex = Math.floor(Math.random() * allMusic.length + 1);
+            do {
+                randIndex = Math.floor(Math.random() * allMusic.length + 1);
+            } while (musicIndex == randIndex); // this loop run until the next random number won't be the same of current music index
             musicIndex = randIndex; // passing randomIndex to musicIndex so the random song will play
             loadMusic(musicIndex); // calling loadMusic function
-            playMusic(); // calling playMusic function 
+            playMusic(); // calling playMusic function
             break;
     }
+});
+
+showMoreBtn.addEventListener("click", () =>{
+    musicList.classList.toggle("show");
+});
+
+hideMusicBtn.addEventListener("click", () =>{
+    showMoreBtn.click();
 });
