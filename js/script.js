@@ -49,6 +49,7 @@ function nextMusic() {
     musicIndex > allMusic.length ? (musicIndex = 1) : (musicIndex = musicIndex);
     loadMusic(musicIndex);
     playMusic();
+    playingNow();
 }
 
 //prev music function
@@ -59,6 +60,7 @@ function prevMusic() {
     musicIndex < 1 ? (musicIndex = allMusic.length) : (musicIndex = musicIndex);
     loadMusic(musicIndex);
     playMusic();
+    playingNow();
 }
 
 // play or pause music button event
@@ -67,6 +69,7 @@ playPauseBtn.addEventListener("click", () => {
 
     // If isMusicPaused is true then call pauseMusic, else call playMusic
     isMusicPaused ? pauseMusic() : playMusic();
+    playingNow();
 });
 
 //  next music btn event
@@ -172,6 +175,7 @@ mainAudio.addEventListener("ended", () => {
             musicIndex = randIndex; // passing randomIndex to musicIndex so the random song will play
             loadMusic(musicIndex); // calling loadMusic function
             playMusic(); // calling playMusic function
+            playingNow();
             break;
     }
 });
@@ -215,6 +219,8 @@ for (let i = 0; i < allMusic.length; i++) {
             totalSec = `0${totalSec}`;
         }
         liAudioDuration.innerText = `${totalMin}:${totalSec}`;
+        // adding t duration attribute which we'll in playingNow function
+        liAudioDuration.setAttribute("t-duration", `${totalMin}:${totalSec}`);
     });
 }
 
@@ -224,14 +230,19 @@ console.log(allLiTags);
 
 function playingNow() {
     for (let j = 0; j < allLiTags.length; j++) {
+        let audioTag = allLiTags[j].querySelector(".audio-duration");
         // let's remove playing class from all other li expect the last one which is clicked
         if (allLiTags[j].classList.contains("playing")) {
             allLiTags[j].classList.remove("playing");
+            // let's get that audio duration value and pass to .audio-duration innerText
+            let adDuration = audioTag.getAttribute("t-duration");
+            audioTag.innerText = adDuration; // passing t-duration value to audio duration innerText;
         }
         // if there is an li tag which li-index is equal to musicIndex
         // then this music is playing now and we'll style it
         if (allLiTags[j].getAttribute("li-index") == musicIndex) {
             allLiTags[j].classList.add("playing");
+            audioTag.innerText = "Playing";
         }
 
         // adding onclick attribute in all li tags
