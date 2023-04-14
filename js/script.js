@@ -12,7 +12,8 @@ const wrapper = document.querySelector(".wrapper"),
     showMoreBtn = wrapper.querySelector("#more-music"),
     hideMusicBtn = musicList.querySelector("#close");
 
-let musicIndex = 3;
+    // load random music on page refresh
+let musicIndex = Math.floor(Math.random() * allMusic.length + 1);;
 
 window.addEventListener("load", () => {
     loadMusic(musicIndex); // calling load music function once window loaded
